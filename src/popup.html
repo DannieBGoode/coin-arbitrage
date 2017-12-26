@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="styles/popup.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app" class="popup-content">
+      <h1 class="app-name">Coin Arbitrage</h1>
+
+      <div>Binance: 
+        <span id="binance-price"></span>
+      </div>
+      <div>Bitfinex: 
+        <span id="bitfinex-price"></span>
+      </div>
+      <div>
+        <span id="result"></span>%
+      </div>
+      <button><a id="refreshButton">Refresh</a></button>
+
+      <div id="display-container">
+
+      </div>
+
+      <footer>
+        <p>
+          <small>
+            <a href="#" class="js-options">Options</a>
+          </small>
+        </p>
+      </footer>
+    </div>
+    
+    <script src="scripts/utils/jquery.js"></script>
+    <script src="scripts/popup.js"></script>
+  </body>
+</html>
