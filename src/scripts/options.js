@@ -5,7 +5,9 @@ var colorSelectors = document.querySelectorAll(".js-radio");
 
 var audioSelectors = document.querySelectorAll(".audio-radio");
 
-var percentageSelector = document.querySelector(".percentage")
+var percentageSelector = document.querySelector(".percentage");
+
+var coinSelector = document.querySelector(".coin-selector");
 
 var setColor = (color) => {
   document.body.style.backgroundColor = color;
@@ -45,6 +47,12 @@ storage.get('percentage', function(resp) {
     }
 });
 
+storage.get('selectedCoin', function(resp) {
+    if (resp.selectedCoin) {
+      coinSelector.value = resp.selectedCoin.value;
+    }
+});
+
 colorSelectors.forEach(function(el) {
   el.addEventListener("click", function(e) {
     var value = this.value;
@@ -70,5 +78,17 @@ audioSelectors.forEach(function(el) {
 percentageSelector.addEventListener("blur", function(e) {
   storage.set({ percentage: this.value }, function() {
     console.log("percentage updated");
+  });
+});
+
+coinSelector.addEventListener("change", function(e) {
+  var selectedCoin = {
+    bitfinex: this.selectedOptions[0].getAttribute("bitfinex"),
+    binance: this.selectedOptions[0].getAttribute("binance"),
+    value: this.value
+  }
+  console.log(selectedCoin);
+  storage.set({ selectedCoin: selectedCoin }, function() {
+    console.log("selectedCoin updated");
   });
 });

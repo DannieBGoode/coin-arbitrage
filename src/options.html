@@ -27,7 +27,7 @@
             <label><input class="js-radio lavender" type="radio" name="radio" value="lavender">Lavender</label>
           </div>
         </div>
-        <div>
+        <div class="option">
           <h5>Arbitrage Alert Percentage</h5>
           <p>What percentage of arbitrage opportunity would you like to be alerted for?</p>
           <input class="options-input percentage" type="number" name="percentage" />
@@ -60,6 +60,17 @@
               </div>
             </label>
           </div>
+        </div>
+
+        <div class="option">
+          <h5>Coin Selection</h5>
+          <p>What coin would you like to Arbitrage?</p>
+          <select class="coin-selector">
+            <option value="IOTA" binance="IOTABTC" bitfinex="tIOTBTC">IOTA</option>
+            <option value="LTC"  binance="LTCBTC"  bitfinex="tLTCBTC">LTC</option>
+            <option value="ETH"  binance="ETHBTC"  bitfinex="tETHBTC">ETH</option>
+            <option value="XMR"  binance="XMRBTC"  bitfinex="tXMRBTC">XMR</option>
+          </select>
         </div>
 
       </div>

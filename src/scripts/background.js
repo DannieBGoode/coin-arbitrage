@@ -14,13 +14,13 @@ ext.runtime.onMessage.addListener(
 
 
 setInterval(function() {
-	console.log("running cycle");
  	refreshData();
 }, 5000);
 
 var price,
 	soundThreshold,
-	result;
+	result,
+	selectedCoin;
 var refreshData = () => {
 	
 	storage.get('price', function(resp) {
@@ -41,7 +41,14 @@ var refreshData = () => {
 		}
 	});
 
-	fetch("https://api.binance.com/api/v3/ticker/price?symbol=IOTABTC").then(function(response) {
+
+	storage.get('selectedCoin', function(resp) {
+	    if (resp.selectedCoin) {
+	      selectedCoin = resp.selectedCoin;
+	    }
+	});
+
+	fetch("https://api.binance.com/api/v3/ticker/price?symbol=" + selectedCoin.binance).then(function(response) {
 		response.json().then(function(data) {
 		  if (price.binance !== parseFloat(data.price)) {
 		      price.binance = parseFloat(data.price);
@@ -50,7 +57,7 @@ var refreshData = () => {
 		});
 	});
 
-	fetch("https://api.bitfinex.com/v2/ticker/tIOTBTC").then(function(response) {
+	fetch("https://api.bitfinex.com/v2/ticker/" + selectedCoin.bitfinex).then(function(response) {
 		response.json().then(function(data) {
 		  if (price.bitfinex !== data[2]) {
 		      price.bitfinex = data[2];

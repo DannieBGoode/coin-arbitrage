@@ -1,7 +1,7 @@
 {
-  "name": "Coin Abitrage",
+  "name": "Coin",
   "version": "0.0.2",
-  "description": "A template for creating cross-browser extensions",
+  "description": "x",
   "scripts": {
     "chrome-build": "cross-env TARGET=chrome gulp",
     "opera-build": "cross-env TARGET=opera gulp",

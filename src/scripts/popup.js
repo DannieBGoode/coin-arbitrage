@@ -19,6 +19,15 @@ var paintResult = () => {
     var prices,
         arbitrage;
 
+
+    storage.get('selectedCoin', function(resp) {
+        if (resp.selectedCoin) {  
+          console.log("here");
+          console.log(resp);
+          document.getElementById("coin-name").innerHTML = resp.selectedCoin.value;
+        }
+    });
+
     storage.get('price', function(resp) {
     if (resp.price) {
       prices = resp.price;
