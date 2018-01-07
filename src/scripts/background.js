@@ -48,23 +48,29 @@ var refreshData = () => {
 	    }
 	});
 
-	fetch("https://api.binance.com/api/v3/ticker/price?symbol=" + selectedCoin.binance).then(function(response) {
-		response.json().then(function(data) {
-		  if (price.binance !== parseFloat(data.price)) {
-		      price.binance = parseFloat(data.price);
-		      saveResult();
-		  }
+	if (selectedCoin && selectedCoin.value !== 'none') {
+		fetch("https://api.binance.com/api/v3/ticker/price?symbol=" + selectedCoin.binance).then(function(response) {
+			response.json().then(function(data) {
+			  if (price.binance !== parseFloat(data.price)) {
+			      price.binance = parseFloat(data.price);
+			      saveResult();
+			  }
+			});
 		});
-	});
 
-	fetch("https://api.bitfinex.com/v2/ticker/" + selectedCoin.bitfinex).then(function(response) {
-		response.json().then(function(data) {
-		  if (price.bitfinex !== data[2]) {
-		      price.bitfinex = data[2];
-		      saveResult();
-		  }
-		});
-	});
+		fetch("https://api.bitfinex.com/v2/ticker/" + selectedCoin.bitfinex).then(function(response) {
+			response.json().then(function(data) {
+			  if (price.bitfinex !== data[2]) {
+			      price.bitfinex = data[2];
+			      saveResult();
+			  }
+			});
+		});	
+	}
+	else {
+		chrome.browserAction.setBadgeText({text: "-%"});
+	}
+	
 }
 
 var saveResult = () => {
