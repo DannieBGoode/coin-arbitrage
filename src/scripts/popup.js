@@ -30,9 +30,22 @@ var paintResult = () => {
 
     storage.get('price', function(resp) {
     if (resp.price) {
+      var message = "Sell " + document.getElementById("coin-name").innerHTML + " on ";
       prices = resp.price;
       document.getElementById("bitfinex-price").innerHTML = prices.bitfinex;
       document.getElementById("binance-price").innerHTML = prices.binance;
+
+      console.log(prices);
+
+      if ((prices.binance > prices.bitfinex) && (resp.selectedCoin)) {
+        message +="<b>binance</b>";
+        
+      }
+      else {
+        message += "<b>bitfinex</b>";
+      }
+      document.getElementById("arbitrage-info").innerHTML = message;
+
     }
     else {
       prices = {

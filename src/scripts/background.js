@@ -73,24 +73,35 @@ var refreshData = () => {
 	
 }
 
+function now() {
+	var currentdate = new Date(); 
+	return currentdate.getDate() + "/"
+	                + (currentdate.getMonth()+1)  + "/" 
+	                + currentdate.getFullYear() + " @ "  
+	                + currentdate.getHours() + ":"  
+	                + currentdate.getMinutes() + ":" 
+	                + currentdate.getSeconds();
+}
+
 var saveResult = () => {
 	if (result !== (price.bitfinex - price.binance) / price.bitfinex * 100);
 	storage.set({ price: price }, function() {
-      console.log("prices updated");
+      // console.log("prices updated");
     });
 	var arbitrage = (price.bitfinex - price.binance) / price.bitfinex * 100;
 	storage.set({ arbitrage: arbitrage }, function() {
-      console.log("arbitrage updated");
+      // console.log("arbitrage updated");
     });
     arbitrage = (Math.round(Math.abs(arbitrage.toFixed(5))*10))/10;
     chrome.browserAction.setBadgeText({text: arbitrage+"%"});
 
 
     storage.get('audio', function(resp) {
-    	console.log("theshold is " + soundThreshold);
+    	// console.log("theshold is " + soundThreshold);
     	if (resp.audio && soundThreshold <= arbitrage) {
 			var audio = new Audio(resp.audio.source);
-			audio.play();	
+			audio.play();
+			console.log(now() + ' arbitrage: '+ arbitrage + '%');
     	}
 	});
 }
