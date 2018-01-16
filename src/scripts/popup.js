@@ -22,8 +22,6 @@ var paintResult = () => {
 
     storage.get('selectedCoin', function(resp) {
         if (resp.selectedCoin) {  
-          console.log("here");
-          console.log(resp);
           document.getElementById("coin-name").innerHTML = resp.selectedCoin.value;
         }
     });
@@ -35,9 +33,7 @@ var paintResult = () => {
       document.getElementById("bitfinex-price").innerHTML = prices.bitfinex;
       document.getElementById("binance-price").innerHTML = prices.binance;
 
-      console.log(prices);
-
-      if ((prices.binance > prices.bitfinex) && (resp.selectedCoin)) {
+      if (prices.binance > prices.bitfinex) {
         message +="<b>binance</b>";
         
       }
